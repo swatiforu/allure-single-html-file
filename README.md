@@ -33,18 +33,12 @@ cd allure-single-html-file
 pip install -r ./requirements.tx
 ```
 
-## Run as console script
-
-```bash
-python ./combine.py ./some/path/to/allure/generated/folder
-```
-
 ## Import and use in python code
 
 ```python
 from combine import combine_allure
 
-combine_allure("./some/path/to/allure/generated/folder")
+combine_allure("./some/path/to/allure/generated/folder", "report_name.html")
 ```
 
 ## TODO

@@ -21,7 +21,7 @@ sep = os.sep
 re_sep = os.sep if os.sep == "/" else r"\\"
 
 
-def combine_allure(folder):
+def combine_allure(folder, report_name):
     """
     Read all files,
     create server.js,
@@ -170,7 +170,7 @@ def combine_allure(folder):
     print(f"server.js is build, it's size is: {size} bytes")
 
     print("> Copying file sinon-9.2.4.js into folder...")
-    copyfile(cur_dir + f"{sep}sinon-9.2.4.js", folder + f"{sep}sinon-9.2.4.js")
+    copyfile("sinon-9.2.4.js", folder + f"{sep}sinon-9.2.4.js")
 
     print("sinon-9.2.4.js is copied")
 
@@ -215,18 +215,18 @@ def combine_allure(folder):
 
     print("Done")
 
-    with open(folder + f"{sep}complete.html", "w", encoding="utf8") as f:
+    with open(report_name, "w", encoding="utf8") as f:
         f.write(str(soup))
 
-    print(f"> Saving result as {folder}{sep}complete.html")
+    print(f"> Saving result as", report_name)
 
-    size = os.path.getsize(folder + f'{sep}complete.html')
+    size = os.path.getsize(report_name)
     print(f"Done. Complete file size is:{size}")
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('folder', help='Folder path, where allure static files are located')
-    args = parser.parse_args()
+    #parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    #parser.add_argument('folder', help='Folder path, where allure static files are located')
+    #args = parser.parse_args()
 
-    combine_allure(args.folder.rstrip(sep))
+    combine_allure("allure-report", "2022-03-11_regression_report.html")
